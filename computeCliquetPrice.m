@@ -9,7 +9,7 @@ function [price] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod
 		error('"type" must be either ''C'' or ''P''');
 	end
 
-	for n=1 * ResetPeriod + 1:ResetPeriod:N
+	for n=ResetPeriod+1:ResetPeriod:N+1
 		q  = q + max(0, min(Cap,Type*(S(n) - S(n-ResetPeriod)) / S(n-ResetPeriod)));
         qhat = qhat + max(0, min(Cap,Type*(Shat(n) - Shat(n-ResetPeriod)) / Shat(n-ResetPeriod)));
 	end
