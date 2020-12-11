@@ -1,4 +1,4 @@
-function [price,q,qhat] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod, r, T)
+function [price] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod, r, T)
 	q = 0;
 	qhat = 0;
 	if strcmp(Type, 'C')
