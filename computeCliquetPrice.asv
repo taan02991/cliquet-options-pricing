@@ -1,4 +1,4 @@
-function [price,q,qhat] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod, r, T)
+function [price] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod, r, T)
 	q = 0;
 	qhat = 0;
 	if strcmp(Type, 'C')
@@ -12,7 +12,11 @@ function [price,q,qhat] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, Rese
 	for n=ResetPeriod+1:ResetPeriod:N+1
  		q  = q + max(0, min(Cap,Type*(S(n) - S(n-ResetPeriod)) / S(n-ResetPeriod)));
         qhat = qhat + max(0, min(Cap,Type*(Shat(n) - Shat(n-ResetPeriod)) / Shat(n-ResetPeriod)));
+%         q  = q + max(0,Type*(S(n) - S(n-ResetPeriod)) / S(n-ResetPeriod));
+%         qhat = qhat + max(0, Type*(Shat(n) - Shat(n-ResetPeriod)) / Shat(n-ResetPeriod));
     end
-  	payoff = S(1) * ((max(q, Floor)+max(qhat,Floor))/2);
+    q,qh
+%  	payoff = S(1) * ((max(q, Floor)+max(qhat,Floor))/2);
+    payoff = S(1) * (q+qhat)/2;
 	price = payoff * exp(-r*T);
 end
