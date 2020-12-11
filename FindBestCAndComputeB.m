@@ -13,7 +13,7 @@ end
     corrA = corrcoef(X,A);
     corrE = corrcoef(X,E);
     Xbar = mean(X);
-    if corrA > corrE
+    if corrA(1, 2) > corrE(1, 2)
         C = 'A';
         Abar = mean(A);
         b = sum((X - Xbar) .* (A - Abar)) / sum((A-Abar).^2);
