@@ -1,0 +1,9 @@
+function CliquetVolatilityPlot(S0, r, sigma0, kappa, theta, delta, rho, T, N, K, Type, M, Cap, Floor1, Floor2, nFloor, ResetPeriod)
+
+Floor=Floor1:(Floor2-Floor1)/(M-1):Floor2;
+C=nan(M,1);
+P=nan(M,1);
+
+
+end
+
