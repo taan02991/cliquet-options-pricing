@@ -1,5 +1,22 @@
 function [S, sigma, Shat, sigmahat] = HestonmodelAnti(S0, r, sigma0, kappa, theta, delta, rho, T, N)
 
+% This function simulates the stock prices and volatilities
+% based on the Heston model using Antithetic technique:
+%
+% dS(t) =S(t)r(t)*dt + S(t)*sigma(t)*dW1(t)
+%
+% d [sigma(t)^2] = kappa( theta - sigma(t)^2 )dt + delta*sigma(t)*dW2(t)
+%
+% which is approximately equivalent to the following model 
+% in discrete-time setup:
+%
+% S(n+1) = S(n)* exp([r - 0.5*sigma(n)^2]*dt + sigma(n)*sqrt(dt)*eps1(n+1))
+%
+% sigma(n+1)^2 = sigma(n)^2 + kappa(theta - sigma(n)^2)*dt 
+%                           + delta*sigma(n)*sqrt(dt)*eps2(n+1)
+%
+% where eps1(n) and eps2(n) are N(0,1) with correlation rho.
+
 dt = T/N;
 S=nan(N+1,1);
 sigma=nan(N+1,1);
