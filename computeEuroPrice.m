@@ -1,4 +1,8 @@
 function [price] = computeEuroPrice(S, Shat, N, Type, K, r, T)
+
+% This function compute the Euro option price for given stock price
+% by using Antithetic technique
+
     ST= S(end);
     ShatT = Shat(end);
     if strcmp(Type, 'C')

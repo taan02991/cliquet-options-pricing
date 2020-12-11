@@ -1,4 +1,8 @@
 function [price]=computeAsianPrice(S,Shat,N,Type,K,r,T)
+
+% This function compute the Asian option price for given stock price
+% by using Antithetic technique
+
 	ST = mean(S(2:end));
 	ShatT = mean(Shat(2:end));
 	if strcmp(Type, 'C')
