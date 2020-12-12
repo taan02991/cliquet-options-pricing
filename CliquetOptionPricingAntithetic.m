@@ -2,7 +2,7 @@ function [P,sigmaP,CI,X]=CliquetOptionPricingAntithetic(S0, r0, r_b, rbar, omega
 % This function computes the Cliquet call/put option prices
 % of a stock whose price process follows the Heston model and
 % interest rate using CIR model and
-% using the Control variate technique.
+% using the antithetic technique.
 
 X = nan(M,1);
 
