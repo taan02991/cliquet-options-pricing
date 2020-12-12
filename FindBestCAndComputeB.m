@@ -1,4 +1,4 @@
-function [b, CType] = FindBestCAndComputeB(S0, r, sigma0, kappa, theta, delta, rho, T, N, K, Type, M, Cap, Floor, ResetPeriod)
+function [b, CType] = FindBestCAndComputeB(S0, r0, r_b, rbar, omega, sigma0, kappa, theta, delta, rho, T, N, K, Type, M, Cap, Floor, ResetPeriod)
 
 % This function is used to find the best C variable and compute b which is used in Control Variate technique
 % 
@@ -13,7 +13,10 @@ function [b, CType] = FindBestCAndComputeB(S0, r, sigma0, kappa, theta, delta, r
     E = nan(M, 1);
 
     % Simulate stock price using heston model and compute the price of Cliquet, Asian and Euro option
+    % interest rate follow CIR model
+    % using antithetic technique
 	for i=1:M
+        r = CIRModel(r0,r_b,rbar,omega,T,N);
 		[S, ~, Shat, ~] = HestonmodelAnti(S0, r, sigma0, kappa, theta, delta, rho, T, N);
   		X(i, 1) = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod, r, T);
 		A(i,1) = computeAsianPrice(S,Shat,N,Type,K, r, T);

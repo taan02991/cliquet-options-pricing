@@ -3,8 +3,10 @@ function [price] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod
 % This function compute the Cliquet option with locally cap and globally floor price for given stock price
 % by using Antithetic technique
 
+    % q and qhat is accumulated payoff in percentage
     q = 0;
 	qhat = 0;
+    
 	if strcmp(Type, 'C')
 		Type=1;
 	elseif strcmp(Type, 'P')
@@ -22,5 +24,5 @@ function [price] = computeCliquetPrice(S, Shat, N, Type, Cap, Floor, ResetPeriod
     % payoff = Notional * max(q, Floor)
     % Notional is the stock price when the contract is issued
   	payoff = S(1) * ((max(q, Floor)+max(qhat,Floor))/2);
-	price = payoff * exp(-r*T);
+	price = payoff * exp(-sum(r(1:N))*T/N);
 end
