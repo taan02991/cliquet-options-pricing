@@ -1,4 +1,4 @@
-function VarNonVarPlot(S0, r0, r_b, rbar, omega, sigma0, kappa, theta, delta, rho, T, N, K, Type, Cap, Floor, ResetPeriod)
+function VariancePlot(S0, r0, r_b, rbar, omega, sigma0, kappa, theta, delta, rho, T, N, K, Type, Cap, Floor, ResetPeriod)
 
 sigmaP1s = [];
 sigmaP2s = [];
